@@ -13,11 +13,13 @@ class CurrencyApiClient
 {
     const BASE_URL = 'https://api.currencyapi.com/v3/';
     const REQUEST_TIMEOUT_DEFAULT = 15; // seconds
+    public string $apiKey;
 
     protected Client $httpClient;
 
-    public function __construct(public string $apiKey, ?array $settings = [])
+    public function __construct(string $apiKey, ?array $settings = [])
     {
+        $this->apiKey = $apiKey;
         $guzzle_opts = [
             'http_errors' => false,
             'headers' => $this->buildHeaders($apiKey),
